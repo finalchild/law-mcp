@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit on any error
+set -e
+
 echo "Building Korean Law MCP DXT binaries..."
 
 # Create directories
@@ -7,17 +10,17 @@ mkdir -p build dist
 
 # Compile for different platforms
 echo "Compiling for Linux x64..."
-deno compile --allow-net --allow-env --allow-write --target x86_64-unknown-linux-gnu --output build/korean-law-mcp-linux-x64 main.ts
+deno compile --allow-net --allow-env --allow-write --target x86_64-unknown-linux-gnu --output build/korean-law-mcp-linux-x64 main.ts || { echo "Failed to compile for Linux x64"; exit 1; }
 chmod +x build/korean-law-mcp-linux-x64
 
 echo "Compiling for macOS x64..."
-deno compile --allow-net --allow-env --allow-write --target x86_64-apple-darwin --output build/korean-law-mcp-macos-x64 main.ts
+deno compile --allow-net --allow-env --allow-write --target x86_64-apple-darwin --output build/korean-law-mcp-macos-x64 main.ts || { echo "Failed to compile for macOS x64"; exit 1; }
 
 echo "Compiling for macOS ARM64..."
-deno compile --allow-net --allow-env --allow-write --target aarch64-apple-darwin --output build/korean-law-mcp-macos-arm64 main.ts
+deno compile --allow-net --allow-env --allow-write --target aarch64-apple-darwin --output build/korean-law-mcp-macos-arm64 main.ts || { echo "Failed to compile for macOS ARM64"; exit 1; }
 
 echo "Compiling for Windows x64..."
-deno compile --allow-net --allow-env --allow-write --target x86_64-pc-windows-msvc --output build/korean-law-mcp-windows-x64.exe main.ts
+deno compile --allow-net --allow-env --allow-write --target x86_64-pc-windows-msvc --output build/korean-law-mcp-windows-x64.exe main.ts || { echo "Failed to compile for Windows x64"; exit 1; }
 
 echo "Build complete! Binaries are in the build/ directory"
 
