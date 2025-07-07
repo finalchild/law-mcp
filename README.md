@@ -12,6 +12,56 @@
 
 ## 설치 및 실행
 
+### Claude Code에서 사용하기
+
+1. 먼저 바이너리 빌드:
+   ```bash
+   # 현재 플랫폼용 빌드
+   deno task build:current
+   ```
+
+2. Claude Code 설정 파일 열기:
+   
+   macOS:
+   ```bash
+   code ~/Library/Application\ Support/Code/User/globalStorage/claude.claude-code/settings.json
+   ```
+   
+   Linux:
+   ```bash
+   code ~/.config/Code/User/globalStorage/claude.claude-code/settings.json
+   ```
+
+3. MCP 서버 설정 추가:
+   ```json
+   {
+     "mcpServers": {
+       "law-mcp": {
+         "command": "/path/to/law-mcp/build/law-mcp",
+         "env": {
+           "LAW_API_OC": "your-email-id"
+         }
+       }
+     }
+   }
+   ```
+   
+   macOS ARM64 (Apple Silicon)의 경우:
+   ```json
+   {
+     "mcpServers": {
+       "law-mcp": {
+         "command": "/path/to/law-mcp/build/law-mcp-darwin-arm64",
+         "env": {
+           "LAW_API_OC": "your-email-id"
+         }
+       }
+     }
+   }
+   ```
+
+4. VS Code 재시작 후 Claude Code에서 사용 가능
+
 ### 환경 변수 설정
 
 ```bash
@@ -19,7 +69,7 @@
 export LAW_API_OC="your-email-id"
 ```
 
-### 실행 방법
+### 개발자용 실행 방법
 
 ```bash
 # 개발 모드 (자동 재시작)
