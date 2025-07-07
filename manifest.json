@@ -1,0 +1,50 @@
+{
+  "dxt_version": "0.1",
+  "name": "korean-law-mcp",
+  "display_name": "한국 법령 조회 MCP",
+  "version": "0.1.0",
+  "description": "open.law.go.kr API를 통해 한국 법령 및 자치법규를 검색하고 조회하는 MCP 서버",
+  "long_description": "법제처의 국가법령정보센터 API를 활용하여 한국 법령 및 자치법규(조례)를 검색하고 상세 정보를 조회할 수 있는 MCP 서버입니다.\n\n## 주요 기능\n- 법령 및 자치법규(조례) 검색\n- 법령명 또는 본문 내용으로 검색\n- 페이지네이션 및 정렬 지원\n- 법령/자치법규 ID 또는 일련번호로 상세 정보 조회\n- 조문, 부칙, 개정문, 제개정이유 포함\n\n## 사용 방법\n1. `search_laws` 도구로 법령 또는 자치법규를 검색합니다 (type 파라미터로 구분)\n2. 검색 결과에서 법령 ID 또는 일련번호(MST)를 확인합니다\n3. `get_law_details` 도구로 상세 정보를 조회합니다",
+  "author": {
+    "name": "finalchild",
+    "email": "me@finalchild.dev"
+  },
+  "license": "ISC",
+  "keywords": ["law", "korea"],
+  "server": {
+    "type": "binary",
+    "entry_point": "./korean-law-mcp",
+    "mcp_config": {
+      "command": "${__dirname}/korean-law-mcp",
+      "args": [],
+      "env": {
+        "LAW_API_OC": "${user_config.api_oc}"
+      }
+    }
+  },
+  "user_config": {
+    "api_oc": {
+      "type": "string",
+      "title": "API OC 파라미터",
+      "description": "open.law.go.kr API 인증을 위한 OC 값 (이메일 ID 부분)",
+      "required": true,
+      "validation": {
+        "pattern": "^[a-zA-Z0-9._-]+$"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "search_laws",
+      "description": "한국 법령 및 자치법규(조례)를 검색합니다"
+    },
+    {
+      "name": "get_law_details",
+      "description": "특정 법령 또는 자치법규의 상세 정보를 조회합니다"
+    }
+  ],
+  "compatibility": {
+    "minimum_dxt_version": "0.1",
+    "platforms": ["windows", "macos", "linux"]
+  }
+}
