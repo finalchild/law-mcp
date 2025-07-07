@@ -1,6 +1,7 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
+CallToolRequest,
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
@@ -9,7 +10,7 @@ import { z } from "zod";
 // API configuration
 const API_BASE_URL = "http://www.law.go.kr/DRF";
 // OC parameter from environment variable or default
-const DEFAULT_OC = Deno.env.get("LAW_API_OC");
+const DEFAULT_OC = Deno.env.get("LAW_API_OC") ?? "";
 
 // Tool schemas
 const SearchLawSchema = z.object({
