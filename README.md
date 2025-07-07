@@ -2,6 +2,9 @@
 
 한국 법령 및 자치법규(조례)를 조회할 수 있는 Model Context Protocol (MCP) 서버입니다. 법제처의 국가법령정보센터(open.law.go.kr) API를 통해 데이터를 제공합니다.
 
+> ⚠️ **실험적 구현 안내**  
+> 현재 이 MCP 서버는 Claude Code의 파일 읽기 기능에 의존하는 실험적 구현입니다. `get_law_details` 도구가 법령 정보를 파일로 저장한 후, Claude Code가 CLI 도구를 사용해 해당 파일을 읽는 방식으로 동작합니다. 따라서 **Claude Desktop 등 일반 MCP 클라이언트에서는 정상적으로 사용할 수 없으며**, Claude Code 환경에서만 온전히 작동합니다.
+
 ## 주요 기능
 
 - 법령 및 자치법규(조례) 검색 지원
